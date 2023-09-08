@@ -33,3 +33,12 @@ body {
   border: 3px dashed rgb(119, 22, 22);
   border-radius: 10px;
 }
+
+.number {
+  opacity: 0;
+  transition: 0.5s all ease-out 0s;
+}
+
+.visible {
+  opacity: 1;
+}
