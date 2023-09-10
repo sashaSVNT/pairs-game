@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  background-color: rgb(202, 203, 180);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  font-family: Open Sans, sans-serif;
+  font-weight: 600;
+}
+
+.info {
+  font-family: Open Sans, sans-serif;
+  margin-bottom: 10px;
+  font-size: 30px;
+  letter-spacing: 0.05em;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(10, 91, 64);
+  font-style: italic;
+}
+
+a:visited {
+  color: rgb(10, 33, 91);
+}
+
+.wrapper {
+  padding: 20px;
+  position: relative;
+  border: 2.5px solid rgb(27, 9, 77);
+  border-radius: 9px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 20px 20px;
+}
+
+.background {
+  opacity: 0.4;
+}
+
+.rectangle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  transition: all 0.5s ease-out 0s;
+  transform-style: preserve-3d;
+}
+
+.number-front, .number-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  border: 3px dashed rgb(255, 255, 255);
+}
+
+.number-front {
+  transform: rotateX(0deg);
+  background-color: rgb(215, 56, 56);
+}
+
+.number-back {
+  transform: rotateX(180deg);
+  background-color: rgb(85, 208, 67);
+}
+
+.flip {
+  transform: rotateX(-180deg);
+}
+
+.new-game-btn {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(50% - 90px);
+  width: 180px;
+  height: 42px;
+  font-size: 20px;
+  background-color: rgb(221, 157, 192);
+  border: 1px solid rgb(38, 55, 38);
+  border-radius: 7px;
+  box-shadow: 2px 2px 7px;
+}
