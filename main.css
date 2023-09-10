@@ -4,24 +4,51 @@
   box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+}
+
 body {
   background-color: rgb(202, 203, 180);
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 50px;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: Open Sans, sans-serif;
   font-weight: 600;
+}
+
+.info {
+  font-family: Open Sans, sans-serif;
+  margin-bottom: 10px;
+  font-size: 30px;
+  letter-spacing: 0.05em;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(10, 91, 64);
+  font-style: italic;
+}
+
+a:visited {
+  color: rgb(10, 33, 91);
 }
 
 .wrapper {
   padding: 20px;
+  position: relative;
   border: 2.5px solid rgb(27, 9, 77);
   border-radius: 9px;
   display: grid;
   grid-template-columns: repeat(4, auto);
   gap: 20px 20px;
+}
+
+.background {
+  opacity: 0.4;
 }
 
 .rectangle {
@@ -56,6 +83,19 @@ body {
   background-color: rgb(85, 208, 67);
 }
 
-.flip{
+.flip {
   transform: rotateX(-180deg);
+}
+
+.new-game-btn {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(50% - 90px);
+  width: 180px;
+  height: 42px;
+  font-size: 20px;
+  background-color: rgb(221, 157, 192);
+  border: 1px solid rgb(38, 55, 38);
+  border-radius: 7px;
+  box-shadow: 2px 2px 7px;
 }

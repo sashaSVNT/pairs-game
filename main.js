@@ -1,4 +1,5 @@
 const wrapper = document.querySelector('.wrapper');
+const renderButton = document.querySelector('.new-game-btn');
 
 class Pairs {
   constructor() {
@@ -23,6 +24,12 @@ class Pairs {
 
   renderItems() {
     this.shuffle();
+    wrapper.classList.remove('background');
+    wrapper.innerHTML = '';
+    const button = document.querySelector('.new-game-btn');
+    if (button) {
+      button.remove();
+    }
     this.grid.forEach(el => this.createCard(el));
   }
 
@@ -43,15 +50,22 @@ class Pairs {
     wrapper.append(rectangle);
   }
 
-  newGame() {
-    this.renderItems();
-    wrapper.addEventListener('click', (e) => {
-      const id = Number(e.target.closest('.rectangle').id);
-      const index = this.grid.findIndex((el) => el.id === id);
-      if (!this.grid[index].isOpen) {
-        game.openCard(id);
-      }
+  endOfTheGame() {
+    const button = document.createElement('button');
+    button.classList.add('new-game-btn');
+    button.innerText = 'Начать игру';
+    button.addEventListener('click', (e) => {
+      this.newGame();
     });
+    wrapper.classList.add('background');
+    document.body.append(button);
+  }
+
+  newGame(amount = 12) {
+    this.grid = [];
+    this.isPlaying = true;
+    this.createItem(amount);
+    this.renderItems();
   }
 
   shuffle() {
@@ -59,6 +73,14 @@ class Pairs {
       let m = Math.floor(Math.random() * (i + 1));
       [this.grid[i], this.grid[m]] = [this.grid[m], this.grid[i]];
     }
+  }
+
+  gameStatus() {
+    const status = this.grid.findIndex(({ isOpen }) => !isOpen);
+    if (status === -1) {
+      this.isPlaying = false;
+      this.endOfTheGame();
+    };
   }
 
   openCard(id) {
@@ -69,6 +91,7 @@ class Pairs {
     card.classList.add('flip');
     const index = this.grid.findIndex((el) => el.id === id);
     this.grid[index].isOpen = true;
+    this.gameStatus();
     setTimeout(() => {
       this.cacheOverflow(id);
     }, 500);
@@ -95,6 +118,13 @@ class Pairs {
 
 
 const game = new Pairs();
-game.createItem(12);
 game.newGame();
 
+wrapper.addEventListener('click', (e) => {
+  const id = Number(e.target.closest('.rectangle').id);
+  console.log(id);
+  const index = game.grid.findIndex((el) => el.id === id);
+  if (!game.grid[index].isOpen) {
+    game.openCard(id);
+  }
+});
