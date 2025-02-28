@@ -33,6 +33,10 @@ class Pairs {
     this.grid.forEach(el => this.createCard(el));
   }
 
+  new() {
+    console.log('nice');
+  }
+
   createCard({ label, id, isOpen }) {
     const rectangle = document.createElement('div');
     rectangle.classList.add('rectangle');
